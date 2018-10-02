@@ -1,7 +1,7 @@
-# Select digest to have the same FROM as kafka-jre
+# Here we use the solsson/kafkacat image and add kubernetes client
 FROM solsson/kafkacat@sha256:be85344e8932d5dd4492fb37122be0bb9e65e560fe960058e0460ec13eea6547
 
-ENV KUBERNETES_VERSION=1.8.5 KUBERNETES_CLIENTS_SHA256=c32b6f90f1e8a15451f0d412d6d1f3db28948d2f7d76d4e28d83c11e1eb25f20
+ENV KUBERNETES_CLIENT_VERSION=1.12.0-rc2 KUBERNETES_CLIENT_SHA256=306af04fc18ca2588e16fd831358df50a2cb02219687b543073836f835de8583
 
 RUN set -ex; \
   export DEBIAN_FRONTEND=noninteractive; \
@@ -10,8 +10,8 @@ RUN set -ex; \
   apt-get update && apt-get install -y $runDeps $buildDeps --no-install-recommends; \
   rm -rf /var/lib/apt/lists/*; \
   \
-  curl -sLS -o k.tar.gz -k https://dl.k8s.io/v${KUBERNETES_VERSION}/kubernetes-client-linux-amd64.tar.gz; \
-  echo "$KUBERNETES_CLIENTS_SHA256  k.tar.gz" | sha256sum -c; \
+  curl -sLS -o k.tar.gz -k https://dl.k8s.io/v${KUBERNETES_CLIENT_VERSION}/kubernetes-client-linux-amd64.tar.gz; \
+  echo "$KUBERNETES_CLIENT_SHA256 k.tar.gz" | sha256sum -c; \
   tar -xvzf k.tar.gz -C /usr/local/bin/ --strip-components=3 kubernetes/client/bin/kubectl; \
   rm k.tar.gz; \
   \

@@ -1,8 +1,8 @@
-FROM solsson/kafka-jre:8@sha256:1ebc3c27c30f5925d240aaa0858e111c2fa6d358048b0f488860ea9cd9c84822
+FROM reddone/jre-zulu:8@sha256:73681407505a2177b93c3a0f14020273541506344e19a01f749b68a9747c0920
 
 ENV KAFKA_MONITOR_REPO=https://github.com/linkedin/kafka-monitor \
-    KAFKA_MONITOR_VERSION=d442f47ee0d0232e40bec55151fe7f8569228693 \
-    KAFKA_MONITOR_SHA256=8da1f6b2c3be8b3c7f7f23173e2eea0a4d05e387d252e9edd81949b4b5950de2
+    KAFKA_MONITOR_VERSION=2.0.0 \
+    KAFKA_MONITOR_SHA256=3713a76a970bd99e72fe8ce1c8be77d4b036057367352265a70ad23b55acef35
 
 RUN set -ex; \
   export DEBIAN_FRONTEND=noninteractive; \
@@ -20,7 +20,7 @@ RUN set -ex; \
   \
   mkdir -p /opt/kafka-monitor; \
   curl -o monitor.tar.gz -SLs "$KAFKA_MONITOR_REPO/archive/$KAFKA_MONITOR_VERSION.tar.gz"; \
-  echo "$KAFKA_MONITOR_SHA256  monitor.tar.gz" | sha256sum -c; \
+  echo "$KAFKA_MONITOR_SHA256 monitor.tar.gz" | sha256sum -c; \
   tar -xzf monitor.tar.gz --strip-components=1 -C /opt/kafka-monitor; \
   rm monitor.tar.gz; \
   \
