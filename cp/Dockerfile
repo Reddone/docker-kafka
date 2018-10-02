@@ -1,7 +1,7 @@
-FROM solsson/kafka-jre:8@sha256:1ebc3c27c30f5925d240aaa0858e111c2fa6d358048b0f488860ea9cd9c84822
+FROM reddone/jre-zulu:8@sha256:73681407505a2177b93c3a0f14020273541506344e19a01f749b68a9747c0920
 
-ENV CP_ARCHIVE_VERSION=v4.0.0 \
-    CP_PACKAGE_VERSION=4.0.0 \
+ENV CP_ARCHIVE_VERSION=v5.0.0 \
+    CP_PACKAGE_VERSION=5.0.0 \
     MAVEN_VERSION=3.5.2 \
     MAVEN_FLAGS="-Dmaven.test.skip=true"
 # Default versions are found in the corresponding branch of: https://github.com/confluentinc/common/blob/master/pom.xml

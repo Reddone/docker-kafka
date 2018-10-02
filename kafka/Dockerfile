@@ -1,5 +1,4 @@
-# The only assumption we make about this FROM is that it has a JRE in path
-FROM solsson/kafka-jre:8@sha256:1ebc3c27c30f5925d240aaa0858e111c2fa6d358048b0f488860ea9cd9c84822
+FROM reddone/jre-zulu:8@sha256:73681407505a2177b93c3a0f14020273541506344e19a01f749b68a9747c0920
 
 ENV KAFKA_VERSION=2.0.0 SCALA_VERSION=2.11
 
