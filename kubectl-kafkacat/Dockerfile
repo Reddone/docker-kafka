@@ -1,5 +1,5 @@
 # Here we use the solsson/kafkacat image and add kubernetes client
-FROM solsson/kafkacat@sha256:be85344e8932d5dd4492fb37122be0bb9e65e560fe960058e0460ec13eea6547
+FROM solsson/kafkacat@sha256:7a5961f861ddad53c25227511b9f36a5c13bc43296470b383be2f3e8e3a506f4
 
 ENV KUBERNETES_CLIENT_VERSION=1.12.0-rc.2 KUBERNETES_CLIENT_SHA256=306af04fc18ca2588e16fd831358df50a2cb02219687b543073836f835de8583
 

@@ -12,7 +12,7 @@ services:
     build: ../kafka
     links:
       - zookeeper
-    entrypoint: ./bin/bin/kafka-server-start.sh
+    entrypoint: ./bin/kafka-server-start.sh
     command:
       - config/server.properties
       - --override
@@ -24,8 +24,6 @@ services:
 
   connect-files:
     build: ../connect-files
-    labels:
-      com.yolean.build-target: ""
     links:
       - kafka-0
 
@@ -37,9 +35,7 @@ services:
       - /var/log:/logs
 
   test-consume-files:
-    image: solsson/kafkacat@sha256:1266d140c52cb39bf314b6f22b6d7a01c4c9084781bc779fdfade51214a713a8
-    labels:
-      com.yolean.build-contract: ""
+    image: solsson/kafkacat@sha256:7a5961f861ddad53c25227511b9f36a5c13bc43296470b383be2f3e8e3a506f4
     command:
       - -b
       - kafka-0:9092

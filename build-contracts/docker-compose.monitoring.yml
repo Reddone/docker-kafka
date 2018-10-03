@@ -16,7 +16,7 @@ services:
       - JMX_PORT=5555
     expose:
       - '5555'
-    entrypoint: ./bin/bin/kafka-server-start.sh
+    entrypoint: ./bin/kafka-server-start.sh
     command:
       - config/server.properties
       - --override
@@ -28,8 +28,6 @@ services:
 
   prometheus-jmx-exporter:
     build: ../prometheus-jmx-exporter
-    labels:
-      com.yolean.build-target: ""
     links:
       - kafka-0
     # patch a config before start, as the image is designed for use with local JMX (same k8s pod)
@@ -44,8 +42,6 @@ services:
 
   test-metrics-export:
     image: solsson/curl@sha256:8b0927b81d10043e70f3e05e33e36fb9b3b0cbfcbccdb9f04fd53f67a270b874
-    labels:
-      com.yolean.build-contract: ""
     command:
       - --fail-early
       - --retry
@@ -57,18 +53,15 @@ services:
 
   connect-jmx:
     build: ../connect-jmx
-    labels:
-      com.yolean.build-target: ""
     links:
       - kafka-0
 
-  # TODO starts too fast, gets % KC_ERROR: Failed to query metadata for topic jmx-test: Local: Broker transport failure
-  # needs to retry until kafka+topic exists
   test-jmx:
-    image: solsson/kafkacat@sha256:1266d140c52cb39bf314b6f22b6d7a01c4c9084781bc779fdfade51214a713a8
-    labels:
-      com.yolean.build-contract: ""
+    image: solsson/kafkacat@sha256:7a5961f861ddad53c25227511b9f36a5c13bc43296470b383be2f3e8e3a506f4
     command:
+      - -exc
+      - sleep 10;
+      - kafkacat
       - -b
       - kafka-0:9092
       - -t
