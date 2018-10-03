@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>se.repos</groupId>
-  <artifactId>kafka-connect-jdbc-build</artifactId>
+  <artifactId>kafka-connect-elastic-build</artifactId>
   <version>1.0.0</version>
 
   <licenses>
@@ -31,8 +31,15 @@
   <dependencies>
     <dependency>
       <groupId>io.confluent</groupId>
-      <artifactId>kafka-connect-jdbc</artifactId>
+      <artifactId>kafka-connect-elasticsearch</artifactId>
       <version>${env.CP_VERSION}</version>
+      <exclusions>
+        <!-- kafka-connect-elastisearch default jest version is 2.4.0 -->
+        <exclusion>
+          <groupId>io.searchbox</groupId>
+          <artifactId>jest</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>io.confluent</groupId>
@@ -51,13 +58,13 @@
         </exclusion>
       </exclusions>
     </dependency>
-    
-    <!-- useful jdbc drivers in addition to those that are already dependencies of kafka-connect-jdbc -->
+
+    <!-- overriding jest dependency of kafka-connect-elastisearch -->
     <dependency>
-      <groupId>org.mariadb.jdbc</groupId>
-      <artifactId>mariadb-java-client</artifactId>
-      <version>2.1.0</version>
+      <groupId>io.searchbox</groupId>
+      <artifactId>jest</artifactId>
+      <version>6.3.1</version>
     </dependency>
   </dependencies>
-  
+
 </project>

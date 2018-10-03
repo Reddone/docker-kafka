@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>se.repos</groupId>
-  <artifactId>kafka-connect-jdbc-build</artifactId>
+  <artifactId>kafka-connect-hdfs-build</artifactId>
   <version>1.0.0</version>
 
   <licenses>
@@ -31,7 +31,7 @@
   <dependencies>
     <dependency>
       <groupId>io.confluent</groupId>
-      <artifactId>kafka-connect-jdbc</artifactId>
+      <artifactId>kafka-connect-hdfs</artifactId>
       <version>${env.CP_VERSION}</version>
     </dependency>
     <dependency>
@@ -51,13 +51,6 @@
         </exclusion>
       </exclusions>
     </dependency>
-    
-    <!-- useful jdbc drivers in addition to those that are already dependencies of kafka-connect-jdbc -->
-    <dependency>
-      <groupId>org.mariadb.jdbc</groupId>
-      <artifactId>mariadb-java-client</artifactId>
-      <version>2.1.0</version>
-    </dependency>
   </dependencies>
-  
+
 </project>

@@ -1,6 +1,6 @@
-FROM solsson/kafka:0.11.0.0
+FROM reddone/kafka@sha256:1d74f0a05694e68262082f6098ae093dc65f60a6d7d60e8a5d9659c675289557
 
-ENV srijiths-kafka-connectors-version=dc0a7122650e697d3ae97c970a4785bbed949479
+ENV SRIJITHS-KAFKA-CONNECTORS-COMMIT=111d4f64cba027df7d2a9b3b750df53dcd50c705
 
 RUN set -ex; \
   buildDeps='curl ca-certificates'; \
@@ -13,7 +13,7 @@ RUN set -ex; \
   \
   mkdir ./kafka-connectors; \
   cd ./kafka-connectors; \
-  curl -SLs https://github.com/srijiths/kafka-connectors/archive/$srijiths-kafka-connectors-version.tar.gz \
+  curl -SLs https://github.com/srijiths/kafka-connectors/archive/$SRIJITHS-KAFKA-CONNECTORS-COMMIT.tar.gz \
     | tar -xzf - --strip-components=1 -C ./; \
   mvn clean install; \
   cd ..; \
