@@ -41,7 +41,7 @@ services:
         5556 example_configs/kafka-prometheus-monitoring.yml
 
   test-metrics-export:
-    image: solsson/curl@sha256:8b0927b81d10043e70f3e05e33e36fb9b3b0cbfcbccdb9f04fd53f67a270b874
+    image: solsson/curl@sha256:92ebf15ac57bea360484480336ed5d9fa16d38d773fd00f7e9fb2cae94baf25a
     command:
       - --fail-early
       - --retry
