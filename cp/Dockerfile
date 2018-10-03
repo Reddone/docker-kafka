@@ -47,9 +47,9 @@ RUN set -ex; \
   mv /opt/src/schema-registry/package-schema-registry/target/kafka-schema-registry-package-$CP_PACKAGE_VERSION-package/share/java/* ./share/java/; \
   mv /opt/src/schema-registry/package-schema-registry/target/kafka-schema-registry-package-$CP_PACKAGE_VERSION-package/etc/* /etc/; \
   \
-  mv /opt/src/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/bin/* ./bin/; \
-  mv /opt/src/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/share/java/* ./share/java/; \
-  mv /opt/src/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/etc/* /etc; \
+  mv /opt/src/kafka-rest/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/bin/* ./bin/; \
+  mv /opt/src/kafka-rest/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/share/java/* ./share/java/; \
+  mv /opt/src/kafka-rest/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/etc/* /etc; \
   \
   rm -Rf /opt/src /opt/maven /root/.m2; \
   \
