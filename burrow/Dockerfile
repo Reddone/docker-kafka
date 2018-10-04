@@ -13,7 +13,7 @@ RUN set -x \
   && apk --update --no-cache add --virtual build-dependencies curl ca-certificates git \
   && curl -SLs -o /usr/local/bin/dep "${GODEP_URL}" \
   && sha256sum /usr/local/bin/dep \
-  && echo "${GODEP_SHA256} /usr/local/bin/dep" | sha256sum -c \
+  && echo "${GODEP_SHA256}  /usr/local/bin/dep" | sha256sum -c \
   && chmod u+x /usr/local/bin/dep \
   && cd $GOPATH/src/github.com/linkedin/Burrow \
   && dep ensure \

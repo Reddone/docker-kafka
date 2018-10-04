@@ -12,7 +12,7 @@ RUN set -ex; \
   rm -rf /var/lib/apt/lists/*; \
   \
   curl -sLS -o k.tar.gz -k https://dl.k8s.io/v${KUBERNETES_CLIENT_VERSION}/kubernetes-client-linux-amd64.tar.gz; \
-  echo "$KUBERNETES_CLIENT_SHA256 k.tar.gz" | sha256sum -c; \
+  echo "$KUBERNETES_CLIENT_SHA256  k.tar.gz" | sha256sum -c; \
   tar -xvzf k.tar.gz -C /usr/local/bin/ --strip-components=3 kubernetes/client/bin/kubectl; \
   rm k.tar.gz; \
   \

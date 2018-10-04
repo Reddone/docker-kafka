@@ -20,7 +20,7 @@ RUN set -ex; \
   \
   mkdir -p /opt/kafka-monitor; \
   curl -o monitor.tar.gz -SLs "$KAFKA_MONITOR_REPO/archive/$KAFKA_MONITOR_VERSION.tar.gz"; \
-  echo "$KAFKA_MONITOR_SHA256 monitor.tar.gz" | sha256sum -c; \
+  echo "$KAFKA_MONITOR_SHA256  monitor.tar.gz" | sha256sum -c; \
   tar -xzf monitor.tar.gz --strip-components=1 -C /opt/kafka-monitor; \
   rm monitor.tar.gz; \
   \
