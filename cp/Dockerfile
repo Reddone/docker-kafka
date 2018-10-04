@@ -14,7 +14,7 @@ RUN set -ex; \
   \
   export DEBIAN_FRONTEND=noninteractive; \
   runDeps=''; \
-  buildDeps='curl ca-certificates'; \
+  buildDeps='curl ca-certificates xmlstarlet'; \
   apt-get update && apt-get install -y $runDeps $buildDeps --no-install-recommends; \
   \
   PATH=$PATH:/opt/maven/bin; \
@@ -28,14 +28,17 @@ RUN set -ex; \
   \
   mkdir -p /opt/src/rest-utils; cd /opt/src/rest-utils; \
   curl -SLs https://github.com/confluentinc/rest-utils/archive/$CP_ARCHIVE_VERSION.tar.gz | tar -xzf - --strip-components=1 -C ./; \
+  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml; \
   mvn $MAVEN_FLAGS install; \
   \
   mkdir -p /opt/src/schema-registry; cd /opt/src/schema-registry; \
   curl -SLs https://github.com/confluentinc/schema-registry/archive/$CP_ARCHIVE_VERSION.tar.gz | tar -xzf - --strip-components=1 -C ./; \
+  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml; \
   mvn $MAVEN_FLAGS install; \
   \
   mkdir -p /opt/src/kafka-rest; cd /opt/src/kafka-rest; \
   curl -SLs https://github.com/confluentinc/kafka-rest/archive/$CP_ARCHIVE_VERSION.tar.gz | tar -xzf - --strip-components=1 -C ./; \
+  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml; \
   mvn $MAVEN_FLAGS install; \
   \
   cd $WORKDIR; \
@@ -47,9 +50,9 @@ RUN set -ex; \
   mv /opt/src/schema-registry/package-schema-registry/target/kafka-schema-registry-package-$CP_PACKAGE_VERSION-package/share/java/* ./share/java/; \
   mv /opt/src/schema-registry/package-schema-registry/target/kafka-schema-registry-package-$CP_PACKAGE_VERSION-package/etc/* /etc/; \
   \
-  mv /opt/src/kafka-rest/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/bin/* ./bin/; \
-  mv /opt/src/kafka-rest/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/share/java/* ./share/java/; \
-  mv /opt/src/kafka-rest/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/etc/* /etc; \
+  mv /opt/src/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/bin/* ./bin/; \
+  mv /opt/src/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/share/java/* ./share/java/; \
+  mv /opt/src/kafka-rest/target/kafka-rest-$CP_PACKAGE_VERSION-package/etc/* /etc; \
   \
   rm -Rf /opt/src /opt/maven /root/.m2; \
   \
