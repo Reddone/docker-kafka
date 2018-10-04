@@ -28,17 +28,20 @@ RUN set -ex; \
   \
   mkdir -p /opt/src/rest-utils; cd /opt/src/rest-utils; \
   curl -SLs https://github.com/confluentinc/rest-utils/archive/$CP_ARCHIVE_VERSION.tar.gz | tar -xzf - --strip-components=1 -C ./; \
-  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml; \
+  mv pom.xml pom.xml.old; \
+  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml.old > pom.xml; \
   mvn $MAVEN_FLAGS install; \
   \
   mkdir -p /opt/src/schema-registry; cd /opt/src/schema-registry; \
   curl -SLs https://github.com/confluentinc/schema-registry/archive/$CP_ARCHIVE_VERSION.tar.gz | tar -xzf - --strip-components=1 -C ./; \
-  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml; \
+  mv pom.xml pom.xml.old; \
+  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml.old > pom.xml; \
   mvn $MAVEN_FLAGS install; \
   \
   mkdir -p /opt/src/kafka-rest; cd /opt/src/kafka-rest; \
   curl -SLs https://github.com/confluentinc/kafka-rest/archive/$CP_ARCHIVE_VERSION.tar.gz | tar -xzf - --strip-components=1 -C ./; \
-  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml; \
+  mv pom.xml pom.xml.old; \
+  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml.old > pom.xml; \
   mvn $MAVEN_FLAGS install; \
   \
   cd $WORKDIR; \
