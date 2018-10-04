@@ -1,7 +1,8 @@
-FROM solsson/kafka:0.11.0.0
+FROM reddone/kafka@sha256:1d74f0a05694e68262082f6098ae093dc65f60a6d7d60e8a5d9659c675289557
 
 # referenced from dependency versions in the maven pom
-ENV CP_VERSION=3.3.0
+ENV CP_VERSION=4.0.2 \
+    MAVEN_VERSION=3.5.2
 
 ADD pom.xml /tmp/pom.xml
 
@@ -14,7 +15,7 @@ RUN set -ex; \
   buildDeps='curl ca-certificates'; \
   apt-get update && apt-get install -y $runDeps $buildDeps --no-install-recommends; \
   \
-  MAVEN_VERSION=3.5.0 PATH=$PATH:/opt/maven/bin; \
+  PATH=$PATH:/opt/maven/bin; \
   mkdir -p /opt/maven; \
   curl -SLs https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar -xzf - --strip-components=1 -C /opt/maven; \
   mvn --version; \
