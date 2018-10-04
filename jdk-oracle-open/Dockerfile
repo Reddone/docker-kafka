@@ -1,4 +1,5 @@
-FROM debian:stretch-slim@sha256:613efd414e9818dcef858201484a94603a548a0e04fd4356e77eb758aeb16124
+# same FROM as jre-zulu, to keep pull times down and to provide the same shell distro+version
+FROM debian:stretch-slim@sha256:40b4072ce18fabe32f357f7c9ec1d256d839b1b95bcdc1f9c910823c6c2932e9
 
 RUN set -ex; \
   export DEBIAN_FRONTEND=noninteractive; \

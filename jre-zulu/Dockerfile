@@ -1,9 +1,10 @@
-FROM debian:stretch-slim@sha256:ea42520331a55094b90f6f6663211d4f5a62c5781673935fe17a4dfced777029
+# This image defines the debian sha256 that must be used by all other images
+FROM debian:stretch-slim@sha256:40b4072ce18fabe32f357f7c9ec1d256d839b1b95bcdc1f9c910823c6c2932e9
 
-ENV ZULU_OPENJDK_VERSION="8=8.23.0.3"
+ENV ZULU_OPENJDK_VERSION="8=8.31.0.1"
 
 RUN set -ex; \
-  runDeps='locales'; \
+  runDeps='locales procps'; \
   buildDeps='gnupg dirmngr'; \
   export DEBIAN_FRONTEND=noninteractive; \
   apt-get update && apt-get install -y $runDeps $buildDeps --no-install-recommends; \
@@ -33,5 +34,6 @@ RUN set -ex; \
   \
   cat /etc/locale.gen | grep -v "^#"; \
   cat /etc/default/locale; \
-  ln -s /etc/locale.alias /usr/share/locale/locale.alias; \
+  ls -la /usr/share/locale/locale.alias | grep /etc/locale.alias; \
   LC_ALL=C dpkg-reconfigure --frontend=noninteractive locales;
+  

@@ -1,8 +1,8 @@
 FROM solsson/kafka-jre@sha256:06dabfc8cacd0687c8f52c52afd650444fb6d4a8e0b85f68557e6e7a5c71667c
 
 ENV KAFKA_MONITOR_REPO=https://github.com/linkedin/kafka-monitor \
-    KAFKA_MONITOR_VERSION=d442f47ee0d0232e40bec55151fe7f8569228693 \
-    KAFKA_MONITOR_SHA256=8da1f6b2c3be8b3c7f7f23173e2eea0a4d05e387d252e9edd81949b4b5950de2
+    KAFKA_MONITOR_VERSION=1.0.0 \
+    KAFKA_MONITOR_SHA256=360d0d63f44d45273bf668e79d679228e87372be84a00e7a131759e88537887c
 
 RUN set -ex; \
   export DEBIAN_FRONTEND=noninteractive; \
@@ -13,14 +13,14 @@ RUN set -ex; \
   cd /opt; \
   GRADLE_VERSION=4.3.1 PATH=$PATH:$(pwd)/gradle-$GRADLE_VERSION/bin; \
   curl -SLs -o gradle-$GRADLE_VERSION-bin.zip https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip; \
-  echo "15ebe098ce0392a2d06d252bff24143cc88c4e963346582c8d88814758d93ac7  gradle-$GRADLE_VERSION-bin.zip" | sha256sum -c -; \
+  echo "15ebe098ce0392a2d06d252bff24143cc88c4e963346582c8d88814758d93ac7 gradle-$GRADLE_VERSION-bin.zip" | sha256sum -c -; \
   unzip gradle-$GRADLE_VERSION-bin.zip; \
   rm gradle-$GRADLE_VERSION-bin.zip; \
   gradle -v; \
   \
   mkdir -p /opt/kafka-monitor; \
   curl -o monitor.tar.gz -SLs "$KAFKA_MONITOR_REPO/archive/$KAFKA_MONITOR_VERSION.tar.gz"; \
-  echo "$KAFKA_MONITOR_SHA256  monitor.tar.gz" | sha256sum -c; \
+  echo "$KAFKA_MONITOR_SHA256 monitor.tar.gz" | sha256sum -c; \
   tar -xzf monitor.tar.gz --strip-components=1 -C /opt/kafka-monitor; \
   rm monitor.tar.gz; \
   \
