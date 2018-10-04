@@ -1,4 +1,4 @@
-FROM reddone/kafka@sha256:1d74f0a05694e68262082f6098ae093dc65f60a6d7d60e8a5d9659c675289557
+FROM reddone/kafka:1.0@sha256:c40cd4dcf548a48c47c8bcf08eb2ba92a935cc8f8851c62010eba0513e2d6b8c
 
 # referenced from dependency versions in the maven pom
 ENV CP_VERSION=4.0.2 \
