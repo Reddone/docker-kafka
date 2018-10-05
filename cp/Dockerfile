@@ -3,7 +3,7 @@ FROM reddone/jre-zulu:1.0@sha256:2d2bbfd8af439e92a1f61af65fb358821da41d91cd72a12
 ENV CP_ARCHIVE_VERSION=v4.0.2 \
     CP_PACKAGE_VERSION=4.0.2 \
     MAVEN_VERSION=3.5.2 \
-    MAVEN_FLAGS="-Dmaven.test.skip=true"
+    MAVEN_FLAGS="-Dmaven.test.skip=true -Dconfluent.maven.repo=https://packages.confluent.io/maven"
 # Default versions are found in the corresponding branch of: https://github.com/confluentinc/common/blob/master/pom.xml
 
 WORKDIR /usr/local
@@ -28,8 +28,6 @@ RUN set -ex; \
   \
   mkdir -p /opt/src/rest-utils; cd /opt/src/rest-utils; \
   curl -SLs https://github.com/confluentinc/rest-utils/archive/$CP_ARCHIVE_VERSION.tar.gz | tar -xzf - --strip-components=1 -C ./; \
-  mv pom.xml pom.xml.old; \
-  xmlstarlet edit --update "//repositories/repository/url" --value 'http://packages.confluent.io/maven/' pom.xml.old > pom.xml; \
   mvn $MAVEN_FLAGS install; \
   \
   mkdir -p /opt/src/schema-registry; cd /opt/src/schema-registry; \
