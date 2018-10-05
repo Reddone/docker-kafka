@@ -34,4 +34,5 @@ RUN set -ex; \
 COPY collect-all-slow.yml example_configs/
 
 ENTRYPOINT ["java", "-jar", "jmx_prometheus_httpserver.jar"]
+
 CMD ["5556", "example_configs/collect-all-slow.yml"]

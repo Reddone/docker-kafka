@@ -28,4 +28,5 @@ RUN set -ex; \
 COPY *.properties ./config/
 
 ENTRYPOINT ["./bin/connect-standalone.sh"]
+
 CMD ["./config/worker.properties", "./config/connect-jmx.properties"]

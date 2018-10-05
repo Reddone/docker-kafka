@@ -22,4 +22,5 @@ RUN set -ex; \
 WORKDIR /opt/kafka
 
 COPY docker-help.sh /usr/local/bin/docker-help
+
 ENTRYPOINT ["docker-help"]
