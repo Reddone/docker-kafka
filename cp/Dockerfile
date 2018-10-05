@@ -60,4 +60,5 @@ RUN set -ex; \
   rm -rf /var/log/dpkg.log /var/log/alternatives.log /var/log/apt
 
 COPY docker-help.sh /usr/local/bin/docker-help
+
 ENTRYPOINT ["docker-help"]

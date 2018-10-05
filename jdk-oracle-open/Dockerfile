@@ -1,6 +1,8 @@
 # same FROM as jre-zulu, to keep pull times down and to provide the same shell distro+version
 FROM debian:stretch-slim@sha256:40b4072ce18fabe32f357f7c9ec1d256d839b1b95bcdc1f9c910823c6c2932e9
 
+ENV JDK_VERSION=10
+
 RUN set -ex; \
   export DEBIAN_FRONTEND=noninteractive; \
   runDeps=''; \
@@ -10,7 +12,7 @@ RUN set -ex; \
   cd /usr/lib; \
   mkdir jvm; \
   cd jvm; \
-  curl -SLs -o jdk.tar.gz https://download.java.net/java/GA/jdk10/10/binaries/openjdk-10_linux-x64_bin.tar.gz; \
+  curl -SLs -o jdk.tar.gz https://download.java.net/java/GA/jdk10/10/binaries/openjdk-${JDK_VERSION}_linux-x64_bin.tar.gz; \
   echo "c851df838a51af52517b74e3a4b251d90c54cf478a4ebed99e7285ef134c3435 jdk.tar.gz" | sha256sum -c -; \
   tar xvzf jdk.tar.gz; \
   rm jdk.tar.gz; \
@@ -23,4 +25,4 @@ RUN set -ex; \
   rm -rf /var/log/dpkg.log /var/log/alternatives.log /var/log/apt
 
 # Instead of: find /usr/lib/jvm/jdk-10/bin/ -executable -exec ln -s '{}' /usr/local/bin/
-ENV PATH="$PATH:/usr/lib/jvm/jdk-10/bin"
+ENV PATH="$PATH:/usr/lib/jvm/jdk-${JDK_VERSION}/bin"
