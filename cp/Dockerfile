@@ -29,7 +29,7 @@ RUN set -ex; \
   mkdir -p /opt/src/rest-utils; cd /opt/src/rest-utils; \
   curl -SLs https://github.com/confluentinc/rest-utils/archive/$CP_ARCHIVE_VERSION.tar.gz | tar -xzf - --strip-components=1 -C ./; \
   mv pom.xml pom.xml.old; \
-  xmlstarlet edit --update "//parent/artifactId" --value 'common' pom.xml.old > pom.xml; \
+  xmlstarlet ed -N p=http://maven.apache.org/POM/4.0.0 -u "/p:project/p:parent/p:artifactId" -v 'common' pom.xml.old > pom.xml; \
   mvn $MAVEN_FLAGS install; \
   \
   mkdir -p /opt/src/schema-registry; cd /opt/src/schema-registry; \
