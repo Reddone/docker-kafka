@@ -1,6 +1,6 @@
 FROM reddone/jre-zulu:1.0@sha256:0761ce0d78c3fa62999c3ae9b869c3a7354c3e13faada1576228de7f81f18884
 
-ENV KAFKA_MANAGER_VERSION=1.3.3.16
+ENV KAFKA_MANAGER_VERSION=1.3.3.18
 
 RUN set -ex; \
   export DEBIAN_FRONTEND=noninteractive; \
