@@ -1,4 +1,4 @@
-FROM reddone/jre-zulu@sha256:73681407505a2177b93c3a0f14020273541506344e19a01f749b68a9747c0920
+FROM reddone/jre-zulu@sha256:62bea26eaa9fa6a2d5909421cc357f64994350355e1776b5beb82d177972d71c
 
 ENV KAFKA_MONITOR_REPO=https://github.com/linkedin/kafka-monitor \
     KAFKA_MONITOR_VERSION=2.0.0 \
