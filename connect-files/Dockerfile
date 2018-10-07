@@ -1,4 +1,4 @@
-FROM reddone/kafka@sha256:1d74f0a05694e68262082f6098ae093dc65f60a6d7d60e8a5d9659c675289557
+FROM reddone/kafka@sha256:adf0ca127dfd77ec527707f3ecc2feefad8f437f03a23fb87a14509366963cc3
 
 COPY worker.properties ./config/
 COPY connect-files.sh ./bin/
